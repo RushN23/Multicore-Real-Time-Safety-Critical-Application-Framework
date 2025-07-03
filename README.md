@@ -45,23 +45,27 @@ This project demonstrates a multicore real-time framework for safety-critical em
 gcc shared_data.c -o shared_data -pthread
 ./shared_data
 
-text
 
 2. **Build Each Core:**
 gcc abs_core.c -o abs_core -pthread -lm -lrt
+
 gcc ecu_core.c -o ecu_core -pthread -lm -lrt
+
 g++ sensor_core.cpp -o sensor_core -pthread -lm -lrt
+
 g++ monitor_core.cpp -o monitor_core -pthread -lm -lrt
 
-text
 
 3. **Run Each Core on a Dedicated CPU:**
 sudo chrt -f 99 taskset -c 0 ./abs_core
+
 sudo chrt -f 90 taskset -c 1 ./ecu_core
+
 sudo chrt -f 85 taskset -c 2 ./sensor_core
+
 sudo chrt -f 80 taskset -c 3 ./monitor_core
 
-text
+
 
 ---
 
